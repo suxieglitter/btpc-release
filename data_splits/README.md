@@ -10,8 +10,13 @@ sizes and exclusion bookkeeping are in `manifest.json`.
 
 - Native file: `scsn_p_2000_2017_6sec_0.5r_fm_train.hdf5` (2,494,194
   records; X/Y/snr + evids/sncls/mag/dist; eligible pool of Up/Down records
-  with SNR in [0, 1000): 1,656,723)
-- Consensus file: `scsn_consensus_fm_CFM_EQ.hdf5` (1,246,902 records)
+  with SNR in [0, 1000): 1,656,723). Distributed by the Southern California
+  Earthquake Data Center (Ross et al., 2018):
+  https://service.scedc.caltech.edu/ftp/Ross_FinalTrainedModels/scsn_p_2000_2017_6sec_0.5r_fm_train.hdf5
+  (also available via SeisBench as `Ross2018JGRFM`)
+- Consensus file: `scsn_consensus_fm_CFM_EQ.hdf5` (1,246,902 records) — a
+  derived dataset (records on which the manual label and the CFM and EQPolar
+  predictions agree); not redistributed, see the main README
 
 ## Batches
 
