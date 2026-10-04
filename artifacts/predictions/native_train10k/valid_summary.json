@@ -1,0 +1,189 @@
+{
+  "stage2_checkpoint": "runs/native_v2/stage2/stage2_cluster_classifier.pth",
+  "source_data_path": "/home/glitter/software/a_dl_cluster/data/scsn_p_2000_2017_6sec_0.5r_fm_train.hdf5",
+  "source_waveform_key": "X",
+  "source_label_key": "Y",
+  "source_snr_key": "snr",
+  "save_dir": "runs/native_v2/valid_train10k",
+  "csv_path": "runs/native_v2/valid_train10k/valid_predictions.csv",
+  "split_definition": {
+    "snr_range": [
+      0.0,
+      1000.0
+    ],
+    "num_used": 10000,
+    "bino": true,
+    "data_selection_seed": 42,
+    "selection_mode": "seeded_2x_candidates_filter_then_n",
+    "include_label2": false,
+    "exclude_initial_selected_pool": false,
+    "target_source": "train",
+    "note": "Stage 1 training rows are reconstructed from the training-source file with the seeded selection used during training; the valid target is either those training rows (train) or the remaining eligible rows (nontrain)."
+  },
+  "split_sizes": {
+    "eligible_source_count": 2488048,
+    "train_candidate_count_pre_bino": 20000,
+    "train_actual_count_used_for_mapping": 10000,
+    "valid_count": 10000
+  },
+  "tta_settings": {
+    "n_tta_views": 30,
+    "tta_max_shift": 0,
+    "tta_scale_jitter": 0.02,
+    "tta_noise_std": 0.015
+  },
+  "thresholds": {
+    "reject_rule": "confidence_center_margin",
+    "reject_strategy": "and",
+    "valid_vote_threshold": 0.8,
+    "valid_margin_threshold": 0.15,
+    "valid_confidence_threshold": 0.8,
+    "valid_center_margin_threshold": 0.05
+  },
+  "cluster_mapping": {
+    "0": 1,
+    "1": 0
+  },
+  "cluster_stats": {
+    "0": {
+      "mapped_label": 1,
+      "up_count": 1,
+      "down_count": 97,
+      "anchor_total": 98,
+      "purity": 0.9897959183673469
+    },
+    "1": {
+      "mapped_label": 0,
+      "up_count": 99,
+      "down_count": 3,
+      "anchor_total": 102,
+      "purity": 0.9705882352941176
+    }
+  },
+  "mapping_info": {
+    "mapping_source": "anchor_bank",
+    "anchor_bank_path": "/home/glitter/software/Barlow_Twins/SRL_revision/runs/native_v2/anchor_bank_native.npz",
+    "anchors_per_label": 100,
+    "anchor_sample_seed": 20260404,
+    "anchor_p_arrival_index": 300,
+    "anchor_count": 200
+  },
+  "mapping_accuracy": 0.98,
+  "label_counts": {
+    "true": {
+      "up": 4946,
+      "down": 5054,
+      "uncertain": 0
+    },
+    "pred_before_reject": {
+      "up": 4994,
+      "down": 5006,
+      "uncertain": 0
+    },
+    "final_after_reject": {
+      "up": 4774,
+      "down": 4856,
+      "uncertain": 370
+    }
+  },
+  "metrics": {
+    "acc_updown_before_reject": 0.9538,
+    "acc_with_reject_as_wrong": 0.9288,
+    "acc_on_accepted_only": 0.9644859813084112,
+    "accuracy_before_reject": 0.9538,
+    "accuracy_after_reject_reject_as_wrong": 0.9288,
+    "accept_rate": 0.963,
+    "accuracy_on_accepted_only": 0.9644859813084112,
+    "before_reject_binary": {
+      "sample_count": 10000,
+      "overall_accuracy": 0.9538,
+      "per_class": {
+        "up": {
+          "label": 0,
+          "support": 4946,
+          "tp": 4739,
+          "fp": 255,
+          "fn": 207,
+          "tn": 4799,
+          "precision": 0.9489387264717661,
+          "recall": 0.9581479983825313,
+          "f1": 0.9535211267605633,
+          "acc_one_vs_rest": 0.9538
+        },
+        "down": {
+          "label": 1,
+          "support": 5054,
+          "tp": 4799,
+          "fp": 207,
+          "fn": 255,
+          "tn": 4739,
+          "precision": 0.9586496204554534,
+          "recall": 0.9495449149188762,
+          "f1": 0.9540755467196818,
+          "acc_one_vs_rest": 0.9538
+        }
+      }
+    },
+    "after_reject_binary": {
+      "sample_count": 10000,
+      "overall_accuracy": 0.9288,
+      "per_class": {
+        "up": {
+          "label": 0,
+          "support": 4946,
+          "tp": 4567,
+          "fp": 207,
+          "fn": 379,
+          "tn": 4847,
+          "precision": 0.9566401340594889,
+          "recall": 0.9233724221593207,
+          "f1": 0.9397119341563787,
+          "acc_one_vs_rest": 0.9414
+        },
+        "down": {
+          "label": 1,
+          "support": 5054,
+          "tp": 4721,
+          "fp": 135,
+          "fn": 333,
+          "tn": 4811,
+          "precision": 0.9721993410214168,
+          "recall": 0.9341115947764147,
+          "f1": 0.9527749747729566,
+          "acc_one_vs_rest": 0.9532
+        }
+      }
+    },
+    "accepted_only_binary": {
+      "sample_count": 9630,
+      "overall_accuracy": 0.9644859813084112,
+      "per_class": {
+        "up": {
+          "label": 0,
+          "support": 4702,
+          "tp": 4567,
+          "fp": 207,
+          "fn": 135,
+          "tn": 4721,
+          "precision": 0.9566401340594889,
+          "recall": 0.9712888132709485,
+          "f1": 0.9639088222878853,
+          "acc_one_vs_rest": 0.9644859813084112
+        },
+        "down": {
+          "label": 1,
+          "support": 4928,
+          "tp": 4721,
+          "fp": 135,
+          "fn": 207,
+          "tn": 4567,
+          "precision": 0.9721993410214168,
+          "recall": 0.9579951298701299,
+          "f1": 0.9650449713818479,
+          "acc_one_vs_rest": 0.9644859813084112
+        }
+      }
+    }
+  },
+  "note": "Metrics were rebuilt from an existing valid_predictions.csv without rerunning model inference."
+}

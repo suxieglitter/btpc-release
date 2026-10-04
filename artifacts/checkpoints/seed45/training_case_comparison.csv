@@ -1,0 +1,2 @@
+stage,save_path,cluster_method,filtering_enabled,kmeans_acc,kmeans_silhouette,spectral_acc,spectral_silhouette,count_retain,count_downweight,count_reject_candidate,count_reject_pool,mean_reliability
+stage1,runs/native_v2/seed45/stage1,spectral,True,0.9403,0.165952867718648,0.9532,0.16400564805297968,3761,6149,7,83,0.6935375810367296

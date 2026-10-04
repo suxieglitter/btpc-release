@@ -68,6 +68,13 @@ btpc-valid --stage2-checkpoint <checkpoint> --data-path <hdf5>
 
 Run any command with `--help` for the full set of options.
 
+## Released artifacts
+
+Trained model checkpoints (the primary SCEDC run, the three seed
+replicates, and the Ridgecrest application encoders), the reference-sample
+banks, and the per-record prediction files of the labeled SCEDC batches
+are included under `artifacts/`.
+
 ## Citation
 
 Pei, Y., and Ge, Z. BTPC: a Barlow Twins-based self-supervised P-wave

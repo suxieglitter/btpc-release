@@ -1,0 +1,15 @@
+{
+  "stage": "stage1",
+  "save_path": "runs/native_v2/stage1",
+  "cluster_method": "spectral",
+  "filtering_enabled": true,
+  "kmeans_acc": 0.9369,
+  "kmeans_silhouette": 0.18904812157699952,
+  "spectral_acc": 0.9533,
+  "spectral_silhouette": 0.18648842526490647,
+  "count_retain": 4679,
+  "count_downweight": 5222,
+  "count_reject_candidate": 2,
+  "count_reject_pool": 97,
+  "mean_reliability": 0.6973371503276777
+}

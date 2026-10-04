@@ -1,0 +1,15 @@
+{
+  "stage": "stage1",
+  "save_path": "runs/native_v2/seed45/stage1",
+  "cluster_method": "spectral",
+  "filtering_enabled": true,
+  "kmeans_acc": 0.9403,
+  "kmeans_silhouette": 0.165952867718648,
+  "spectral_acc": 0.9532,
+  "spectral_silhouette": 0.16400564805297968,
+  "count_retain": 3761,
+  "count_downweight": 6149,
+  "count_reject_candidate": 7,
+  "count_reject_pool": 83,
+  "mean_reliability": 0.6935375810367296
+}
