@@ -33,11 +33,12 @@ same dataset is also available programmatically through
 Underlying waveforms and earthquake catalogs: Southern California Earthquake
 Data Center, https://doi.org/10.7909/C3WD3xH1.
 
-The consistency-check batch additionally uses `scsn_consensus_fm_CFM_EQ.hdf5`,
-a derived dataset (records on which the manual label and the CFM and EQPolar
-predictions agree). It is not redistributed here because it embeds SCEDC
-waveforms; its construction is described in the paper, and its role is
-documented by the split list `data_splits/consensus_100k.csv`.
+The consistency-check batch additionally uses `scsn_consensus_fm_CFM_DiTing_EQ.hdf5`,
+a derived dataset (records on which the manual label and the CFM,
+DiTingMotion, and EQPolar predictions all agree). It is not redistributed
+here because it embeds SCEDC waveforms; its construction is described in
+the paper, and its role is documented by the split list
+`data_splits/consensus_100k.csv`.
 
 The exact row lists of every batch used in the paper (training 10k, validation 100k,
 reference 200, consistency-check 100k, t-SNE subsample 10k) are committed
@@ -46,7 +47,7 @@ under `data_splits/` and can be regenerated with fixed seeds:
 ```
 python scripts/make_event_splits.py \
     --native-path <scsn_p_2000_2017_6sec_0.5r_fm_train.hdf5> \
-    --consensus-path <scsn_consensus_fm_CFM_EQ.hdf5> \
+    --consensus-path <scsn_consensus_fm_CFM_DiTing_EQ.hdf5> \
     --output-dir data_splits
 ```
 

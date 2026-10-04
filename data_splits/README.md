@@ -14,9 +14,10 @@ sizes and exclusion bookkeeping are in `manifest.json`.
   Earthquake Data Center (Ross et al., 2018):
   https://service.scedc.caltech.edu/ftp/Ross_FinalTrainedModels/scsn_p_2000_2017_6sec_0.5r_fm_train.hdf5
   (also available via SeisBench as `Ross2018JGRFM`)
-- Consensus file: `scsn_consensus_fm_CFM_EQ.hdf5` (1,246,902 records) — a
-  derived dataset (records on which the manual label and the CFM and EQPolar
-  predictions agree); not redistributed, see the main README
+- Consensus file: `scsn_consensus_fm_CFM_DiTing_EQ.hdf5` (888,968 records) —
+  a derived dataset (records on which the manual label and the CFM,
+  DiTingMotion, and EQPolar predictions all agree); not redistributed, see
+  the main README
 
 ## Batches
 
