@@ -1,0 +1,49 @@
+# Primary experiment configuration: SCEDC manual-polarity data.
+# The model trains on the seeded 10,000-row batch listed in
+# data_splits/native_train_10k.csv and predicts on that same batch
+# (dataset-adaptive usage). Set data_path to your local copy of the
+# SCEDC P-wave HDF5 file.
+
+data_path: /path/to/scsn_p_2000_2017_6sec_0.5r_fm_train.hdf5
+waveform_key: X
+label_key: Y
+snr_key: snr
+snr_min: 0.0
+snr_max: 1000.0
+num_used: 10000
+resize: 32
+shift: 0
+bino: true
+base_cha: 16
+projector_dims: 512
+batch_size: 256
+lr: 0.001
+lambda_param: 0.005
+epochs: 80
+cluster_feature: encoder
+norm_mod: max
+eval_source: clean
+aug_shift: 1
+aug_noise_min: 0.05
+aug_noise_max: 0.2
+aug_scale_min: 0.8
+aug_scale_max: 1.2
+enable_periodic_filtering: true
+stage1_cluster_method: spectral
+warmup_epochs: 20
+filter_interval: 10
+n_tta_views: 30
+tta_max_shift: 2
+knn_k: 10
+low_score_threshold: 0.45
+high_score_threshold: 0.7
+low_score_patience: 2
+w_q: 0.15
+w_aug: 0.2
+w_knn: 0.2
+w_stab: 0.25
+w_margin: 0.2
+downweight_loss_scale: 0.35
+stability_ema_alpha: 0.5
+seed: 42
+data_selection_seed: 42

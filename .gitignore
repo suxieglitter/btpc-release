@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.egg-info/
+runs/
+*.hdf5
+*.h5
+*.pth
