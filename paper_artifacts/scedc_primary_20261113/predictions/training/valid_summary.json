@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "batch": "training",
+  "stage2_checkpoint": "checkpoints/seed42/stage2_cluster_classifier.pth",
+  "stage2_checkpoint_sha256": "8c909d3c4e213ac5c5f99e7806610cb9e7d2e031f69960c91432e5eceee6e3bf",
+  "predictions": "predictions/training/valid_predictions.csv",
+  "predictions_sha256": "ee78f9bb31f30cfd83df89ac7832c17878496f87e71258014491b35f0eeb4c9e",
+  "split": "data_splits/native_train_10k.csv",
+  "split_sha256": "ab67d4d7e28765b0a0889c9a647460aee4d326e8194fb091ca8c3dc5fb5aaead",
+  "metrics": {
+    "record_count": 10000,
+    "correct_before_rejection": 9532,
+    "accepted_count": 9701,
+    "correct_accepted_count": 9325,
+    "rejected_count": 299,
+    "accuracy_before_reject": 0.9532,
+    "accept_rate": 0.9701,
+    "accuracy_on_accepted_only": 0.9612411091640037,
+    "accuracy_after_reject_reject_as_wrong": 0.9325,
+    "confusion_true_up_down_by_final_up_down_reject": [
+      [
+        4598,
+        152,
+        196
+      ],
+      [
+        224,
+        4727,
+        103
+      ]
+    ]
+  },
+  "tta_settings": {
+    "n_tta_views": 30,
+    "tta_max_shift": 1,
+    "tta_scale_jitter": 0.02,
+    "tta_noise_std": 0.015
+  },
+  "reject_rule": "(mean_confidence < 0.8) AND (mean_center_margin < 0.05)",
+  "cluster_mapping": {
+    "0": 1,
+    "1": 0
+  },
+  "prediction_time_reference": {
+    "mapping_accuracy": 0.98,
+    "mapping_info": {
+      "mapping_source": "anchor_bank",
+      "anchor_bank_path": "/home/glitter/software/Barlow_Twins/SRL_revision/runs/native_v2/anchor_bank_native.npz",
+      "anchors_per_label": 100,
+      "anchor_sample_seed": 20260404,
+      "anchor_p_arrival_index": 300,
+      "anchor_count": 200
+    },
+    "cluster_mapping": {
+      "0": 1,
+      "1": 0
+    },
+    "original_summary": "provenance/training_inference_summary_original.json"
+  },
+  "current_reference": {
+    "split": "data_splits/reference_200.csv",
+    "summary": "reference/reference_summary.json",
+    "mapping_accuracy": 0.96,
+    "cluster_mapping": {
+      "0": 1,
+      "1": 0
+    },
+    "selection_seed": 20261004,
+    "tta_seed": 20261004
+  },
+  "provenance_limit": "Existing target CSVs are preserved and recounted, not regenerated. Historical target TTA RNG states were not saved. The new reference draw preserves the global mapping; it does not recreate the target TTA draws."
+}

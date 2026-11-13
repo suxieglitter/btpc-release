@@ -1,0 +1,188 @@
+{
+  "stage2_checkpoint": "runs/native_v2/stage2/stage2_cluster_classifier.pth",
+  "source_data_path": "/home/glitter/software/a_dl_cluster/data/scsn_p_2000_2017_6sec_0.5r_fm_train.hdf5",
+  "source_waveform_key": "X",
+  "source_label_key": "Y",
+  "source_snr_key": "snr",
+  "save_dir": "runs/native_v2/shift1_valid_train10k",
+  "csv_path": "runs/native_v2/shift1_valid_train10k/valid_predictions.csv",
+  "split_definition": {
+    "snr_range": [
+      0.0,
+      1000.0
+    ],
+    "num_used": 10000,
+    "bino": true,
+    "data_selection_seed": 42,
+    "selection_mode": "seeded_2x_candidates_filter_then_n",
+    "include_label2": false,
+    "exclude_initial_selected_pool": false,
+    "target_source": "train",
+    "note": "Stage 1 training rows are reconstructed from the training-source file with the seeded selection used during training; the valid target is either those training rows (train) or the remaining eligible rows (nontrain)."
+  },
+  "split_sizes": {
+    "eligible_source_count": 2488048,
+    "train_candidate_count_pre_bino": 20000,
+    "train_actual_count_used_for_mapping": 10000,
+    "valid_count": 10000
+  },
+  "tta_settings": {
+    "n_tta_views": 30,
+    "tta_max_shift": 1,
+    "tta_scale_jitter": 0.02,
+    "tta_noise_std": 0.015
+  },
+  "thresholds": {
+    "reject_rule": "confidence_center_margin",
+    "reject_strategy": "and",
+    "valid_vote_threshold": 0.8,
+    "valid_margin_threshold": 0.15,
+    "valid_confidence_threshold": 0.8,
+    "valid_center_margin_threshold": 0.05
+  },
+  "cluster_mapping": {
+    "0": 1,
+    "1": 0
+  },
+  "cluster_stats": {
+    "0": {
+      "mapped_label": 1,
+      "up_count": 1,
+      "down_count": 97,
+      "anchor_total": 98,
+      "purity": 0.9897959183673469
+    },
+    "1": {
+      "mapped_label": 0,
+      "up_count": 99,
+      "down_count": 3,
+      "anchor_total": 102,
+      "purity": 0.9705882352941176
+    }
+  },
+  "mapping_info": {
+    "mapping_source": "anchor_bank",
+    "anchor_bank_path": "/home/glitter/software/Barlow_Twins/SRL_revision/runs/native_v2/anchor_bank_native.npz",
+    "anchors_per_label": 100,
+    "anchor_sample_seed": 20260404,
+    "anchor_p_arrival_index": 300,
+    "anchor_count": 200
+  },
+  "mapping_accuracy": 0.98,
+  "label_counts": {
+    "true": {
+      "up": 4946,
+      "down": 5054,
+      "uncertain": 0
+    },
+    "pred_before_reject": {
+      "up": 4992,
+      "down": 5008,
+      "uncertain": 0
+    },
+    "final_after_reject": {
+      "up": 4822,
+      "down": 4879,
+      "uncertain": 299
+    }
+  },
+  "metrics": {
+    "acc_updown_before_reject": 0.9532,
+    "acc_with_reject_as_wrong": 0.9325,
+    "acc_on_accepted_only": 0.9612411091640037,
+    "accuracy_before_reject": 0.9532,
+    "accuracy_after_reject_reject_as_wrong": 0.9325,
+    "accept_rate": 0.9701,
+    "accuracy_on_accepted_only": 0.9612411091640037,
+    "before_reject_binary": {
+      "sample_count": 10000,
+      "overall_accuracy": 0.9532,
+      "per_class": {
+        "up": {
+          "label": 0,
+          "support": 4946,
+          "tp": 4735,
+          "fp": 257,
+          "fn": 211,
+          "tn": 4797,
+          "precision": 0.9485176282051282,
+          "recall": 0.957339264051759,
+          "f1": 0.9529080297846649,
+          "acc_one_vs_rest": 0.9532
+        },
+        "down": {
+          "label": 1,
+          "support": 5054,
+          "tp": 4797,
+          "fp": 211,
+          "fn": 257,
+          "tn": 4735,
+          "precision": 0.957867412140575,
+          "recall": 0.9491491887613771,
+          "f1": 0.9534883720930232,
+          "acc_one_vs_rest": 0.9532
+        }
+      }
+    },
+    "after_reject_binary": {
+      "sample_count": 10000,
+      "overall_accuracy": 0.9325,
+      "per_class": {
+        "up": {
+          "label": 0,
+          "support": 4946,
+          "tp": 4598,
+          "fp": 224,
+          "fn": 348,
+          "tn": 4830,
+          "precision": 0.9535462463708005,
+          "recall": 0.9296401132228063,
+          "f1": 0.9414414414414416,
+          "acc_one_vs_rest": 0.9428
+        },
+        "down": {
+          "label": 1,
+          "support": 5054,
+          "tp": 4727,
+          "fp": 152,
+          "fn": 327,
+          "tn": 4794,
+          "precision": 0.968846075015372,
+          "recall": 0.9352987732489118,
+          "f1": 0.9517769052652774,
+          "acc_one_vs_rest": 0.9521
+        }
+      }
+    },
+    "accepted_only_binary": {
+      "sample_count": 9701,
+      "overall_accuracy": 0.9612411091640037,
+      "per_class": {
+        "up": {
+          "label": 0,
+          "support": 4750,
+          "tp": 4598,
+          "fp": 224,
+          "fn": 152,
+          "tn": 4727,
+          "precision": 0.9535462463708005,
+          "recall": 0.968,
+          "f1": 0.9607187630589219,
+          "acc_one_vs_rest": 0.9612411091640037
+        },
+        "down": {
+          "label": 1,
+          "support": 4951,
+          "tp": 4727,
+          "fp": 152,
+          "fn": 224,
+          "tn": 4598,
+          "precision": 0.968846075015372,
+          "recall": 0.9547566148252878,
+          "f1": 0.9617497456765004,
+          "acc_one_vs_rest": 0.9612411091640037
+        }
+      }
+    }
+  }
+}

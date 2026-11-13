@@ -1,0 +1,160 @@
+{
+  "native_path": "/home/glitter/software/a_dl_cluster/data/scsn_p_2000_2017_6sec_0.5r_fm_train.hdf5",
+  "consensus_path": "/home/glitter/software/a_dl_cluster/data/scsn_consensus_fm_CFM_DiTing_EQ.hdf5",
+  "snr_range": [
+    0.0,
+    1000.0
+  ],
+  "train": {
+    "size": 10000,
+    "selection": "seeded_2x_candidates_bino_filter_first_n (btpc.predict.get_stage1_selection_pools)",
+    "selection_seed": 42,
+    "pool_note": "all native Up/Down records; consensus-set records are NOT excluded"
+  },
+  "reference": {
+    "size": 200,
+    "per_label": 100,
+    "bank_path": "/home/glitter/software/Barlow_Twins/SRL_revision/runs/native_v2/anchor_bank_native.npz",
+    "bank_snr_min": 50.0,
+    "bank_pool_per_label": 5000,
+    "bank_build_seed": 42,
+    "subset_sample_seed": 20261004,
+    "overlap_with_train_rows": 0,
+    "redraw": {
+      "date": "2026-10-04",
+      "supersedes_sample_seed": 20260404,
+      "reason": "reviewer items R1.4/R2.2: eliminate the 1-row overlap with the training batch and make the reference set independent at both record and event level",
+      "exclusions": [
+        "training-batch rows",
+        "training-batch events",
+        "validation-batch rows",
+        "consensus-batch records (evid|sncl)"
+      ],
+      "excluded_pool_rows": {
+        "train_rows": 65,
+        "train_events_extra": 1390,
+        "valid_rows": 580,
+        "consensus_records": 821
+      },
+      "mapping": {
+        "0": 1,
+        "1": 0
+      },
+      "mapping_accuracy": 0.96,
+      "tta_settings": {
+        "n_tta_views": 30,
+        "tta_max_shift": 1,
+        "tta_scale_jitter": 0.02,
+        "tta_noise_std": 0.015
+      },
+      "tta_seed": 20261004,
+      "note": "mapping orientation identical to the published runs (cluster 0 -> down, cluster 1 -> up), so all batch metrics are unchanged; only the mapping-accuracy number and the reference-set descriptive statistics were updated.",
+      "batches_unchanged_since": "2026-09-14"
+    }
+  },
+  "valid": {
+    "size": 100000,
+    "seed": 20260914,
+    "excluded_rows": 10200,
+    "eligible_pool": 1656723,
+    "dedup_swap": {
+      "date": "2026-10-14",
+      "reason": "the 2026-09-14 draw excluded training/reference rows but not rows sharing an (evid,sncl) key; 8 validation records shared a key with a training row, 4 of them byte-identical waveform duplicates",
+      "rule": "each colliding record replaced by an undrawn eligible row of the same event and the same manual label whose key appears in no batch; candidate order from numpy default_rng(20261014); the realized combination additionally preserves every figure quoted in the manuscript at its printed precision (16 checks)",
+      "replaced_records": 8,
+      "record_dir": "runs/native_v2/valid_dedup_swap_20261014",
+      "quoted_numbers_unchanged": [
+        "95.12 / 95.97 at 96.94 (overall)",
+        "91,639 / 65,197 / 95.11 / 95.96",
+        "8,361 / 95.22 / 96.03",
+        "49,897+50,103 / 69,885 / 496",
+        "4,688 of 9,571",
+        "5,997 shared keys with consensus",
+        "Table S per-class statistics",
+        "flip 97.85 / 95.13 / 4.97 / 95.03",
+        "non-reversed 2,155 -> 2,153 (Table S3 caption updated)"
+      ],
+      "generated_utc": "2026-10-14T06:21:49.178408+00:00"
+    }
+  },
+  "consensus": {
+    "size": 100000,
+    "seed": 20260914,
+    "excluded_records_matching_train_or_refs": 5627,
+    "match_key": "evid|sncl"
+  },
+  "summary_rows": [
+    {
+      "split": "native_train_10k",
+      "n": 10000,
+      "n_up": 4946,
+      "n_down": 5054,
+      "up_fraction": 0.4946,
+      "n_events": 9571,
+      "n_stations": 393,
+      "snr_mean": 32.76732342427373,
+      "snr_p10": 3.473777985572815,
+      "snr_p25": 5.8985878229141235,
+      "snr_p50": 12.2730131149292,
+      "snr_p75": 29.642624855041504,
+      "snr_p90": 72.4651092529297,
+      "mag_p50": 1.5,
+      "mag_mean": 1.5648551361083984,
+      "dist_p50": 33.375
+    },
+    {
+      "split": "native_valid_100k",
+      "n": 100000,
+      "n_up": 49897,
+      "n_down": 50103,
+      "up_fraction": 0.49897,
+      "n_events": 69885,
+      "n_stations": 496,
+      "snr_mean": 32.875954813245535,
+      "snr_p10": 3.498212099075318,
+      "snr_p25": 5.87383770942688,
+      "snr_p50": 12.053813457489014,
+      "snr_p75": 29.097329139709473,
+      "snr_p90": 73.76952133178715,
+      "mag_p50": 1.5,
+      "mag_mean": 1.5658311332702637,
+      "dist_p50": 33.3125
+    },
+    {
+      "split": "reference_200",
+      "n": 200,
+      "n_up": 100,
+      "n_down": 100,
+      "up_fraction": 0.5,
+      "n_events": 200,
+      "n_stations": 105,
+      "snr_mean": 137.72363485336302,
+      "snr_p10": 56.58003158569336,
+      "snr_p25": 64.02244186401367,
+      "snr_p50": 95.87176895141602,
+      "snr_p75": 139.4138298034668,
+      "snr_p90": 284.3308319091796,
+      "mag_p50": 1.8349609375,
+      "mag_mean": 1.99410400390625,
+      "dist_p50": 19.171875
+    },
+    {
+      "split": "consensus_100k",
+      "n": 100000,
+      "n_up": 49355,
+      "n_down": 50645,
+      "up_fraction": 0.49355,
+      "n_events": 68514,
+      "n_stations": 486,
+      "snr_mean": 34567279306.00323,
+      "snr_p10": 5.547373199462891,
+      "snr_p25": 9.266340732574463,
+      "snr_p50": 18.53392791748047,
+      "snr_p75": 43.46422576904297,
+      "snr_p90": 105.4461975097657,
+      "mag_p50": 1.5302734375,
+      "mag_mean": 1.620660633621216,
+      "dist_p50": 28.9140625
+    }
+  ]
+}

@@ -1,30 +1,21 @@
-# Artifacts
+# Historical artifacts
 
-Released run artifacts of the paper.
+This directory preserves artifacts from the public snapshot at commit
+[f5fdfde](https://github.com/suxieglitter/btpc-release/tree/f5fdfdec4de872171be95bb01e972e26fd63e9c2).
+It is not the current revised-manuscript primary experiment package.
+Use [the current release](../paper_artifacts/scedc_primary_20261113/README.md)
+for corresponding models, record lists, predictions, reference mapping and
+independently recounted metrics.
 
-## Checkpoints (`checkpoints/`)
+The old `predictions/native_valid100k` CSV and summary record the historical
+`repro_v2_s42` model (94.902% raw accuracy, 95.459% coverage,
+96.214081% accepted accuracy and 99.5% reference agreement). The old
+`checkpoints/seed42` classifier belongs to the native SCEDC run. These are
+different model realizations and must not be paired as one current-paper run.
+The reference list and the target-inference settings also predate later
+manuscript changes.
 
-- `seed42/`–`seed45/`: Stage-1 encoder (`final_pwave_model.pth`) and
-  Stage-2 pseudo-label classifier (`stage2_cluster_classifier.pth`) of the
-  SCEDC experiment for training seeds 42–45 (42 = the primary run), each
-  with its run configuration (`stage1_config.json`), summaries, and the
-  final pseudo-label list.
-- `ridgecrest/ridgecrest_encoder_snr{0,5,10,20}.pth`: self-supervised
-  encoders retrained on the Ridgecrest subsets with SNR >= 0/5/10/20
-  (SNR >= 10 is the paper's primary setting; the others are the
-  training-SNR comparison).
-
-## Reference banks (`reference_bank/`)
-
-Anchor banks from which the 200 reference records are drawn at prediction
-time, with manifests: `anchor_bank_native.npz` (SCEDC experiment),
-`anchor_bank_scsn_paper.npz` (historical SCEDC records used in the
-Ridgecrest application). The committed 200-row lists are
-`data_splits/reference_200.csv` and the Ridgecrest manifest.
-
-## Predictions (`predictions/`)
-
-Per-record prediction files of the three labeled SCEDC batches
-(`native_train10k`, `native_valid100k`, `consensus100k`), including the
-per-record mean confidence (MC), cluster-center margin (MCM), and
-rejection outcome, plus each batch's summary metrics.
+Existing checkpoints, reference banks and prediction files are retained
+unchanged for historical inspection. Their presence here does not establish
+that every supplementary, seed-replicate or Ridgecrest result in the current
+manuscript is fully packaged or independently reproducible.

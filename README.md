@@ -1,80 +1,62 @@
 # BTPC
 
-Self-supervised P-wave first-motion polarity classification with Barlow
-Twins and weak reference-based calibration.
+Self-supervised P-wave first-motion polarity classification with Barlow Twins
+and reference-based calibration. The model trains without polarity labels and
+uses 200 manually labeled reference records to orient the learned classes.
 
-BTPC trains a convolutional encoder with the Barlow Twins objective on
-unlabeled P-wave windows, splits the learned feature space into two clusters
-with spectral clustering, trains a lightweight classifier on the resulting
-pseudo-labels, and maps the two clusters onto physical Up/Down polarities
-with a small set of manually labeled reference waveforms (200 records in the
-paper). No polarity label enters any training stage.
+## Current revised-manuscript primary experiment
 
-## Installation
+Use [the SCEDC primary release](paper_artifacts/scedc_primary_20261113/README.md)
+for the current training-seed-42 model, record lists, three target prediction
+CSVs, independently recounted summaries and current reference-mapping evidence.
 
-```
+| Batch | Before-rejection accuracy | Coverage | Accepted-subset accuracy |
+|---|---:|---:|---:|
+| Training, 10,000 | 95.320% | 97.010% | 96.124111% |
+| Validation, 100,000 | 95.116% | 96.942% | 95.969755% |
+| Consensus, 100,000 | 99.294% | 98.512% | 99.550309% |
+
+The current reference result is 192/200 = 96.00%. The consensus batch is a
+secondary consistency check. This release covers the primary SCEDC experiment;
+it does not claim a complete release of every supplementary or Ridgecrest run.
+
+```bash
+# Exact recount of the frozen results; Python standard library only.
+python scripts/verify_paper_artifacts.py
+
+# Independent inference on the 200 current reference records.
 pip install -e .
+python scripts/verify_paper_artifacts.py --reference-inference
 ```
 
-Requires Python >= 3.10; see `requirements.txt` for the package dependencies.
+See the package README for fresh target-inference commands, data acquisition,
+SHA-256 identities, reference sampling and known reproducibility limits. The
+historical target TTA RNG states were not saved; recounting the released CSVs
+and running a new seeded inference realization are different operations.
+
+## Historical files retained
+
+The top-level [artifacts](artifacts/README.md) and [data_splits](data_splits/README.md)
+directories retain the earlier public snapshot. They are **not the current
+manuscript artifact bundle**. In particular, the old validation predictions were
+produced by the historical `repro_v2_s42` model while the old seed42 checkpoint
+was the native SCEDC model; those files must not be combined as a reproducible
+current-paper run. No historical model or prediction file was deleted.
+
+The earlier source and files are accessible at commit
+[f5fdfde](https://github.com/suxieglitter/btpc-release/tree/f5fdfdec4de872171be95bb01e972e26fd63e9c2).
+Use that commit to inspect the historical code. The root code at the current
+commit supports the new package, whose code hashes are listed in its manifest.
 
 ## Data
 
-The pipeline reads SCEDC P-wave waveforms from an HDF5 file (waveforms,
-binary polarity labels, SNR, event/station metadata). The primary
-experiment uses the first-motion-polarity dataset of Ross et al. (2018),
-distributed by the Southern California Earthquake Data Center (SCEDC):
-
-https://service.scedc.caltech.edu/ftp/Ross_FinalTrainedModels/scsn_p_2000_2017_6sec_0.5r_fm_train.hdf5
-
-Set `data_path` in `configs/native_v2.yaml` to the downloaded file. The
-same dataset is also available programmatically through
-[SeisBench](https://seisbench.readthedocs.io) as `Ross2018JGRFM`.
-Underlying waveforms and earthquake catalogs: Southern California Earthquake
-Data Center, https://doi.org/10.7909/C3WD3xH1.
-
-The consistency-check batch additionally uses `scsn_consensus_fm_CFM_DiTing_EQ.hdf5`,
-a derived dataset (records on which the manual label and the CFM,
-DiTingMotion, and EQPolar predictions all agree). It is not redistributed
-here because it embeds SCEDC waveforms; its construction is described in
-the paper, and its role is documented by the split list
-`data_splits/consensus_100k.csv`.
-
-The exact row lists of every batch used in the paper (training 10k, validation 100k,
-reference 200, consistency-check 100k, t-SNE subsample 10k) are committed
-under `data_splits/` and can be regenerated with fixed seeds:
-
-```
-python scripts/make_event_splits.py \
-    --native-path <scsn_p_2000_2017_6sec_0.5r_fm_train.hdf5> \
-    --consensus-path <scsn_consensus_fm_CFM_DiTing_EQ.hdf5> \
-    --output-dir data_splits
-```
-
-## Usage
-
-```
-# Stage 1: Barlow Twins representation learning + periodic filtering
-btpc-train stage1 --config configs/native_v2.yaml
-
-# Stage 2: pseudo-label classifier on the frozen encoder
-btpc-train stage2 --stage1-dir <stage1_output_dir>
-
-# Predict: test-time augmentation, MC/MCM scores, cluster-to-polarity mapping
-btpc-predict --stage2-checkpoint <checkpoint> --data-path <hdf5>
-
-# Evaluate predictions against manual labels
-btpc-valid --stage2-checkpoint <checkpoint> --data-path <hdf5>
-```
-
-Run any command with `--help` for the full set of options.
-
-## Released artifacts
-
-Trained model checkpoints (the primary SCEDC run, the three seed
-replicates, and the Ridgecrest application encoders), the reference-sample
-banks, and the per-record prediction files of the labeled SCEDC batches
-are included under `artifacts/`.
+Native input is the Ross et al. (2018) first-motion dataset distributed by
+[SCEDC](https://service.scedc.caltech.edu/ftp/Ross_FinalTrainedModels/scsn_p_2000_2017_6sec_0.5r_fm_train.hdf5).
+The complete native and derived consensus HDF5 files are not included. The
+current exact row lists are under
+`paper_artifacts/scedc_primary_20261113/data_splits/`, not the historical root
+`data_splits/` directory. See the package README for what can be verified
+without the full waveform inputs and what requires them.
 
 ## Citation
 
@@ -82,11 +64,9 @@ Pei, Y., and Ge, Z. BTPC: a Barlow Twins-based self-supervised P-wave
 first-motion polarity clustering framework with weak reference-based
 calibration. *Seismological Research Letters* (submitted).
 
-Dataset: Ross, Z. E., Meier, M.-A., and Hauksson, E. (2018). P wave
-arrival picking and first-motion polarity determination with deep
-learning. *Journal of Geophysical Research: Solid Earth*, 123(6),
-5120–5129. https://doi.org/10.1029/2017JB015259
+Ross, Z. E., Meier, M.-A., and Hauksson, E. (2018). P wave arrival picking and
+first-motion polarity determination with deep learning. *Journal of Geophysical
+Research: Solid Earth*, 123(6), 5120–5129.
+[DOI](https://doi.org/10.1029/2017JB015259).
 
-## License
-
-MIT
+MIT license; see LICENSE.

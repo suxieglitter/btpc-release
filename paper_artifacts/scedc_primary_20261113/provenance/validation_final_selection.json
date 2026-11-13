@@ -1,0 +1,69 @@
+{
+  "rule": "consensus-key-clean candidates only; class assignment preserves all quoted figures at printed precision; within-class order follows the seeded rng permutation; first passing materialization wins",
+  "selection": [
+    {
+      "slot": 0,
+      "rank": 0,
+      "source_index": 1015068,
+      "sncl": "EN.RED.EHZ",
+      "evid": 14493144,
+      "true_label": 1
+    },
+    {
+      "slot": 1,
+      "rank": 0,
+      "source_index": 680163,
+      "sncl": "CI.PLM.HHZ",
+      "evid": 14283136,
+      "true_label": 0
+    },
+    {
+      "slot": 2,
+      "rank": 1,
+      "source_index": 720632,
+      "sncl": "CI.OAT.EHZ",
+      "evid": 10206157,
+      "true_label": 1
+    },
+    {
+      "slot": 3,
+      "rank": 0,
+      "source_index": 1579967,
+      "sncl": "AZ.CRY.HHZ",
+      "evid": 10235837,
+      "true_label": 0
+    },
+    {
+      "slot": 4,
+      "rank": 4,
+      "source_index": 189794,
+      "sncl": "CI.CRR.EHZ",
+      "evid": 10330649,
+      "true_label": 1
+    },
+    {
+      "slot": 5,
+      "rank": 0,
+      "source_index": 2187881,
+      "sncl": "CI.TOW.EHZ",
+      "evid": 9168682,
+      "true_label": 0
+    },
+    {
+      "slot": 6,
+      "rank": 0,
+      "source_index": 2035183,
+      "sncl": "CI.LUC.EHZ",
+      "evid": 10330133,
+      "true_label": 1
+    },
+    {
+      "slot": 7,
+      "rank": 2,
+      "source_index": 2287889,
+      "sncl": "PB.B082.EHZ",
+      "evid": 10344773,
+      "true_label": 0
+    }
+  ]
+}

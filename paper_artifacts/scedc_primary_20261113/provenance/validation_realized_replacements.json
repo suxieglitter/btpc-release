@@ -1,0 +1,191 @@
+{
+  "source_before_sha256": "1965e56f70a008f67a32b54f2ee2a6c76c7dbda812055dc98e7ebc0daa39eef4",
+  "source_after_sha256": "c18ffe331b64b2f7aaf49a0f17d141b81857b1d60ed4f87551ed96be1c1fed09",
+  "replacements": [
+    {
+      "position": 26,
+      "old": {
+        "source_index": "554",
+        "evid": "14493144",
+        "sncl": "EN.ENG.EHZ",
+        "label": "1",
+        "label_name": "down",
+        "snr": "2.0001819133758545",
+        "mag": "0.300048828125",
+        "dist": "7.51171875"
+      },
+      "new": {
+        "source_index": "1015068",
+        "evid": "14493144",
+        "sncl": "EN.RED.EHZ",
+        "label": "1",
+        "label_name": "down",
+        "snr": "7.215933799743652",
+        "mag": "0.300048828125",
+        "dist": "1.3798828125"
+      }
+    },
+    {
+      "position": 2166,
+      "old": {
+        "source_index": "52113",
+        "evid": "14283136",
+        "sncl": "AZ.LVA2.HHZ",
+        "label": "0",
+        "label_name": "up",
+        "snr": "11.470212936401367",
+        "mag": "0.93994140625",
+        "dist": "14.828125"
+      },
+      "new": {
+        "source_index": "680163",
+        "evid": "14283136",
+        "sncl": "CI.PLM.HHZ",
+        "label": "0",
+        "label_name": "up",
+        "snr": "5.514466285705566",
+        "mag": "0.93994140625",
+        "dist": "32.71875"
+      }
+    },
+    {
+      "position": 19213,
+      "old": {
+        "source_index": "474607",
+        "evid": "10206157",
+        "sncl": "CI.WGR.HHZ",
+        "label": "1",
+        "label_name": "down",
+        "snr": "250.80377197265625",
+        "mag": "2.7890625",
+        "dist": "58.03125"
+      },
+      "new": {
+        "source_index": "720632",
+        "evid": "10206157",
+        "sncl": "CI.OAT.EHZ",
+        "label": "1",
+        "label_name": "down",
+        "snr": "16.482912063598633",
+        "mag": "2.7890625",
+        "dist": "89.875"
+      }
+    },
+    {
+      "position": 19550,
+      "old": {
+        "source_index": "483051",
+        "evid": "10235837",
+        "sncl": "SB.GVDA.HLZ",
+        "label": "0",
+        "label_name": "up",
+        "snr": "6.067943572998047",
+        "mag": "0.669921875",
+        "dist": "4.66015625"
+      },
+      "new": {
+        "source_index": "1579967",
+        "evid": "10235837",
+        "sncl": "AZ.CRY.HHZ",
+        "label": "0",
+        "label_name": "up",
+        "snr": "10.06684398651123",
+        "mag": "0.669921875",
+        "dist": "13.7265625"
+      }
+    },
+    {
+      "position": 38683,
+      "old": {
+        "source_index": "963427",
+        "evid": "10330649",
+        "sncl": "SB.WLA.HLZ",
+        "label": "1",
+        "label_name": "down",
+        "snr": "78.48286437988281",
+        "mag": "1.490234375",
+        "dist": "8.3671875"
+      },
+      "new": {
+        "source_index": "189794",
+        "evid": "10330649",
+        "sncl": "CI.CRR.EHZ",
+        "label": "1",
+        "label_name": "down",
+        "snr": "4.914946556091309",
+        "mag": "1.490234375",
+        "dist": "40.40625"
+      }
+    },
+    {
+      "position": 59853,
+      "old": {
+        "source_index": "1490754",
+        "evid": "9168682",
+        "sncl": "CI.CLC.EHZ",
+        "label": "0",
+        "label_name": "up",
+        "snr": "2.202082872390747",
+        "mag": "1.2998046875",
+        "dist": "40.4375"
+      },
+      "new": {
+        "source_index": "2187881",
+        "evid": "9168682",
+        "sncl": "CI.TOW.EHZ",
+        "label": "0",
+        "label_name": "up",
+        "snr": "5.707146644592285",
+        "mag": "1.2998046875",
+        "dist": "33.3125"
+      }
+    },
+    {
+      "position": 79706,
+      "old": {
+        "source_index": "1983596",
+        "evid": "10330133",
+        "sncl": "CI.PASC.HHZ",
+        "label": "1",
+        "label_name": "down",
+        "snr": "2.3784875869750977",
+        "mag": "1.9404296875",
+        "dist": "96.875"
+      },
+      "new": {
+        "source_index": "2035183",
+        "evid": "10330133",
+        "sncl": "CI.LUC.EHZ",
+        "label": "1",
+        "label_name": "down",
+        "snr": "24.783550262451172",
+        "mag": "1.9404296875",
+        "dist": "50.75"
+      }
+    },
+    {
+      "position": 97451,
+      "old": {
+        "source_index": "2431378",
+        "evid": "10344773",
+        "sncl": "CI.HOL.EHZ",
+        "label": "0",
+        "label_name": "up",
+        "snr": "28.587221145629883",
+        "mag": "1.2099609375",
+        "dist": "76.375"
+      },
+      "new": {
+        "source_index": "2287889",
+        "evid": "10344773",
+        "sncl": "PB.B082.EHZ",
+        "label": "0",
+        "label_name": "up",
+        "snr": "3.7432973384857178",
+        "mag": "1.2099609375",
+        "dist": "85.8125"
+      }
+    }
+  ],
+  "note": "Realized records are compared directly; an earlier swap_record.json contains superseded choices and is not this release."
+}

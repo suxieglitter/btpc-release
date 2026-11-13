@@ -1,0 +1,26 @@
+{
+  "reference_count": 200,
+  "correct_count": 192,
+  "mapping_accuracy": 0.96,
+  "cluster_mapping": {
+    "0": 1,
+    "1": 0
+  },
+  "reference_selection_seed": 20261004,
+  "tta_seed": 20261004,
+  "reference_exclusion_and_draw_replayed": true,
+  "reference_inference_order": "seeded draw order before source-index sorting",
+  "eligible_bank_count": 7392,
+  "tta_settings": {
+    "n_tta_views": 30,
+    "tta_max_shift": 1,
+    "tta_scale_jitter": 0.02,
+    "tta_noise_std": 0.015
+  },
+  "stage1_encoder_matches_stage2": true,
+  "environment": {
+    "torch": "2.14.0+cu130",
+    "numpy": "2.4.6",
+    "device": "cpu"
+  }
+}
