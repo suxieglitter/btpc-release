@@ -18,12 +18,12 @@ classifiers = [
     "Topic :: Scientific/Engineering",
 ]
 dependencies = [
-    "torch>=2.0",
-    "numpy>=1.23",
-    "h5py>=3.7",
-    "scipy>=1.9",
-    "scikit-learn>=1.1",
-    "matplotlib>=3.5",
+    "torch>=2.4.1",
+    "numpy>=2.0",
+    "h5py>=3.11",
+    "scipy>=1.13",
+    "scikit-learn>=1.4.2",
+    "matplotlib>=3.9",
     "tqdm",
     "pyyaml>=6.0",
 ]

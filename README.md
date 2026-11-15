@@ -1,72 +1,43 @@
 # BTPC
 
-Self-supervised P-wave first-motion polarity classification with Barlow Twins
-and reference-based calibration. The model trains without polarity labels and
-uses 200 manually labeled reference records to orient the learned classes.
+BTPC is a self-supervised classifier for P-wave first-motion polarity based on
+Barlow Twins. A small set of labeled reference waveforms maps the two learned
+classes to Up and Down.
 
-## Current revised-manuscript primary experiment
+## Quick start
 
-Use [the SCEDC primary release](paper_artifacts/scedc_primary_20261113/README.md)
-for the current training-seed-42 model, record lists, three target prediction
-CSVs, independently recounted summaries and current reference-mapping evidence.
-
-| Batch | Before-rejection accuracy | Coverage | Accepted-subset accuracy |
-|---|---:|---:|---:|
-| Training, 10,000 | 95.320% | 97.010% | 96.124111% |
-| Validation, 100,000 | 95.116% | 96.942% | 95.969755% |
-| Consensus, 100,000 | 99.294% | 98.512% | 99.550309% |
-
-The current reference result is 192/200 = 96.00%. The consensus batch is a
-secondary consistency check. This release covers the primary SCEDC experiment;
-it does not claim a complete release of every supplementary or Ridgecrest run.
+Install with Python 3.10 or later.
 
 ```bash
-# Exact recount of the frozen results; Python standard library only.
-python scripts/verify_paper_artifacts.py
-
-# Independent inference on the 200 current reference records.
-pip install -e .
-python scripts/verify_paper_artifacts.py --reference-inference
+python -m pip install -e .
 ```
 
-See the package README for fresh target-inference commands, data acquisition,
-SHA-256 identities, reference sampling and known reproducibility limits. The
-historical target TTA RNG states were not saved; recounting the released CSVs
-and running a new seeded inference realization are different operations.
+Download the [SCEDC first-motion waveform file][waveforms] and set `--data-path`
+to its location. The example runs inference on 16 validation records and writes
+`predictions.csv` and `summary.json` to `runs/example`.
 
-## Historical files retained
+```bash
+python scripts/replay_paper_predictions.py \
+  --batch validation \
+  --data-path /path/to/scsn_p_2000_2017_6sec_0.5r_fm_train.hdf5 \
+  --output-dir runs/example --limit 16
+```
 
-The top-level [artifacts](artifacts/README.md) and [data_splits](data_splits/README.md)
-directories retain the earlier public snapshot. They are **not the current
-manuscript artifact bundle**. In particular, the old validation predictions were
-produced by the historical `repro_v2_s42` model while the old seed42 checkpoint
-was the native SCEDC model; those files must not be combined as a reproducible
-current-paper run. No historical model or prediction file was deleted.
+## Paper artifacts
 
-The earlier source and files are accessible at commit
-[f5fdfde](https://github.com/suxieglitter/btpc-release/tree/f5fdfdec4de872171be95bb01e972e26fd63e9c2).
-Use that commit to inspect the historical code. The root code at the current
-commit supports the new package, whose code hashes are listed in its manifest.
-
-## Data
-
-Native input is the Ross et al. (2018) first-motion dataset distributed by
-[SCEDC](https://service.scedc.caltech.edu/ftp/Ross_FinalTrainedModels/scsn_p_2000_2017_6sec_0.5r_fm_train.hdf5).
-The complete native and derived consensus HDF5 files are not included. The
-current exact row lists are under
-`paper_artifacts/scedc_primary_20261113/data_splits/`, not the historical root
-`data_splits/` directory. See the package README for what can be verified
-without the full waveform inputs and what requires them.
+The [SCEDC experiment package](paper_artifacts/scedc_primary_20261113/README.md)
+includes the trained encoder and classifier, record lists, and per-record
+predictions for the training, validation, and consensus batches. It also includes
+200 reference records and a command to check the reported results.
 
 ## Citation
 
-Pei, Y., and Ge, Z. BTPC: a Barlow Twins-based self-supervised P-wave
-first-motion polarity clustering framework with weak reference-based
-calibration. *Seismological Research Letters* (submitted).
+Pei, Y., and Ge, Z. *BTPC: A Barlow Twins-based Self-Supervised P-Wave
+First-Motion Polarity Clustering Framework with Weak Reference-Based Calibration*.
 
-Ross, Z. E., Meier, M.-A., and Hauksson, E. (2018). P wave arrival picking and
-first-motion polarity determination with deep learning. *Journal of Geophysical
-Research: Solid Earth*, 123(6), 5120–5129.
-[DOI](https://doi.org/10.1029/2017JB015259).
+The SCEDC waveform dataset is described by [Ross et al. (2018)][ross].
 
-MIT license; see LICENSE.
+BTPC is distributed under the [MIT license](LICENSE).
+
+[waveforms]: https://service.scedc.caltech.edu/ftp/Ross_FinalTrainedModels/scsn_p_2000_2017_6sec_0.5r_fm_train.hdf5
+[ross]: https://doi.org/10.1029/2017JB015251

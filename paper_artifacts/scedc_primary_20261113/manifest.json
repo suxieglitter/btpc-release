@@ -141,11 +141,11 @@
     },
     {
       "path": "pyproject.toml",
-      "sha256": "7023c520d005ea28aaa7bbdb5c9780abd0a6d0a722092dafc0cd4e28a7be548e"
+      "sha256": "bed2f7db4d0a141f556c15b0df8a6f5938822791bb0a6bda42d59848425e6589"
     },
     {
       "path": "requirements.txt",
-      "sha256": "8c26f5ddf82fe601db0e5e576ca7d863cbeba8f3f88e93228248aa1523b3d4e2"
+      "sha256": "a4caea74037eb8805b027c796cadf8e45a7ced828fa85c347b2379b5cf7fdfb8"
     },
     {
       "path": "scripts/build_paper_artifacts.py",
@@ -171,13 +171,13 @@
   "files": [
     {
       "path": "README.md",
-      "bytes": 6872,
-      "sha256": "ec9d45e496fe6a926b31d748d1a7922ae8c1dc18ec72f0ff0735e3aed533ed5a"
+      "bytes": 2087,
+      "sha256": "247072c1338870bc3a68c8d61ad7f4d0338fb9b1b6423d8450aa59eaca45159d"
     },
     {
       "path": "README.pdf",
-      "bytes": 27925,
-      "sha256": "80fc80b63969023d0072fc6ee575fd3ac50c7c621de5b93fdc4bd547402f6e27"
+      "bytes": 20035,
+      "sha256": "784bea64f199ad2dcc3c8f9c8725c6a15e724227412b29c5b6d23af855032be9"
     },
     {
       "path": "checkpoints/seed42/final_pwave_model.pth",
