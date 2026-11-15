@@ -25,22 +25,20 @@ python scripts/replay_paper_predictions.py \
 
 ## Predict your own waveforms
 
-The example below applies the released SCEDC model to your waveforms without
-retraining. Save vertical-component traces in a NumPy `.npz` file under the key
-`waveforms`, with shape `(N, 600)`. Each trace must be sampled at 100 Hz, with
-the P arrival at sample index 300 (zero-based), and use an upward-positive
-polarity convention. Supply the full six-second traces; the example detrends,
-crops the 32-sample P window, and normalizes it internally. Manual polarity
-labels and event/station metadata are not required.
+Apply the released SCEDC model without retraining. Prepare an array of
+vertical-component waveforms with shape `(N, 600)`: full six-second traces at
+100 Hz, with the P arrival at sample index 300 (zero-based) and positive
+amplitudes indicating upward motion. No labels are required.
+
+Save the array as a NumPy `.npz` file:
 
 ```python
 import numpy as np
 
-# waveforms is your array of N aligned, six-second vertical-component traces.
 np.savez("my_waveforms.npz", waveforms=waveforms.astype(np.float32))
 ```
 
-From the repository root, after installation:
+Run from the repository root:
 
 ```bash
 python examples/predict_waveforms.py \
@@ -50,10 +48,9 @@ python examples/predict_waveforms.py \
 
 Use a new or empty output directory. In `predictions.csv`, `input_row` identifies
 the zero-based input row and `final_label_name` is `Up`, `Down`, or `Uncertain`.
-The example uses 30 TTA views and rejects a record only when both
-`MC < 0.8` and `MCM < 0.05`, matching the SCEDC paper example above.
-The separate `btpc-predict` command uses vote-consistency/margin rejection and
-different TTA defaults; use the examples here for the paper's prediction settings.
+
+These examples use the paper's prediction settings; `btpc-predict` uses
+different TTA defaults and rejection criteria.
 
 ## Paper artifacts
 
