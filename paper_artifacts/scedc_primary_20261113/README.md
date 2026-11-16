@@ -14,6 +14,11 @@ A record is rejected when `MC < 0.8` and `MCM < 0.05`. Coverage is the fraction
 of all records retained. The consensus batch checks agreement on records whose
 manual labels match CFM, DiTingMotion, and EQPolar.
 
+The [auxiliary validation list](../../data_splits/native_valid_100k.csv)
+identifies the records for the supplementary comparisons. Primary batch lists
+are in this package. `scripts/make_event_splits.py` writes regenerated primary
+lists to `runs/reproduced_data_splits/` by default.
+
 ## Verify the results
 
 Run from the repository root. This command checks file hashes, record identities,

@@ -1,6 +1,6 @@
 # Primary experiment configuration: SCEDC manual-polarity data.
 # The model trains on the seeded 10,000-row batch listed in
-# data_splits/native_train_10k.csv and predicts on that same batch
+# paper_artifacts/scedc_primary_20261113/data_splits/native_train_10k.csv and predicts on that same batch
 # (dataset-adaptive usage). Set data_path to your local copy of the
 # SCEDC P-wave HDF5 file.
 

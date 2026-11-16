@@ -148,16 +148,8 @@
       "sha256": "a4caea74037eb8805b027c796cadf8e45a7ced828fa85c347b2379b5cf7fdfb8"
     },
     {
-      "path": "scripts/build_paper_artifacts.py",
-      "sha256": "80fa9f6066a24e0cf1cb13dd829673ae4ff221c34e4c2347b0a509142f038984"
-    },
-    {
       "path": "scripts/make_event_splits.py",
-      "sha256": "f6108d8e8546970c1b288721a88aace78488e8c69b1bb7bab2f121ef6a47b522"
-    },
-    {
-      "path": "scripts/redraw_references.py",
-      "sha256": "f0e3d35b73240f60db31e973aa7c7155babea436b9ce95e9880c3dcefbb35217"
+      "sha256": "52148a8a0970420d91e33ea60a819c6f5e2feebf7da4b45e6e39cde9ac77fe07"
     },
     {
       "path": "scripts/replay_paper_predictions.py",
@@ -171,13 +163,8 @@
   "files": [
     {
       "path": "README.md",
-      "bytes": 2087,
-      "sha256": "247072c1338870bc3a68c8d61ad7f4d0338fb9b1b6423d8450aa59eaca45159d"
-    },
-    {
-      "path": "README.pdf",
-      "bytes": 20035,
-      "sha256": "784bea64f199ad2dcc3c8f9c8725c6a15e724227412b29c5b6d23af855032be9"
+      "bytes": 2370,
+      "sha256": "21ab315ae0f7d47a6ddb2c350d3fa9ddfb22c03e07743840b23aafe67f186435"
     },
     {
       "path": "checkpoints/seed42/final_pwave_model.pth",

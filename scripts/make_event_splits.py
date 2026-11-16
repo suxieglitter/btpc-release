@@ -2,7 +2,7 @@
 
 Ticket 01 (v2): the deployment-style experiment trains on 10,000 native SCEDC
 Up/Down records and predicts on that same batch as the primary metric. This
-script writes the exact, seeded index lists to ``data_splits/`` so every batch
+script writes the exact, seeded index lists to ``runs/reproduced_data_splits/`` so each primary batch
 in the paper is reproducible:
 
 - ``native_train_10k.csv``   Stage 1 training rows (seeded selection, identical
@@ -37,11 +37,11 @@ satisfy the replacement rule, and the collision set is asserted to match, so
 any change in the native file fails loudly instead of silently producing a
 different split. The cluster-to-polarity mapping evaluation of the redraw is
 not repeated here (it needs the Stage-2 model); its recorded result is
-carried into the manifest. Re-running ``scripts/redraw_references.py``
-recomputes it.
+carried into the manifest. Run ``scripts/verify_paper_artifacts.py
+--reference-inference`` to recompute the released reference result.
 
-The anchor bank itself (waveforms) is a run product under ``runs/`` and is
-not committed; the reference list here is its committed 200-row subset.
+This script stores its generated reference bank under ``runs/``. The SCEDC
+experiment package includes the bank used for inference and its 200-row subset.
 """
 
 import argparse
@@ -89,7 +89,7 @@ RECORDED_VALID_REPLACEMENTS = [
     (2431378, 2287889),  # CI.HOL.EHZ -> PB.B082.EHZ (event 10344773, down)
 ]
 
-# Provenance of the 2026-10-04 reference redraw (scripts/redraw_references.py).
+# Provenance of the SCEDC reference draw.
 REDRAW_PROVENANCE = {
     "date": "2026-10-04",
     "supersedes_sample_seed": 20260404,
@@ -209,8 +209,8 @@ def build_original_reference_subset(
 
     This is the reference set that the frozen 2026-09-14 validation and
     consensus batches were drawn against, so it is needed for their exclusion
-    sets. It is NOT written to data_splits; the committed reference file is
-    the 2026-10-04 independent redraw."""
+    sets. The generated reference list uses
+    the 2026-10-04 independent draw."""
     ensure_anchor_bank(
         bank_path=str(bank_path),
         manifest_path=str(manifest_path),
@@ -235,7 +235,7 @@ def build_independent_reference_subset(
     sample_seed,
 ):
     """Draw the 2026-10-04 fully independent reference subset from the anchor
-    bank (mirrors scripts/redraw_references.py): exclude training-batch rows,
+    bank. Exclude training-batch rows,
     training-batch events, validation-batch rows and consensus-batch records,
     then draw n_per_label rows per class with the sample seed."""
     bank_rows = np.asarray(bank["source_indices"], dtype=np.int64)
@@ -427,7 +427,10 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--native-path", required=True)
     parser.add_argument("--consensus-path", required=True)
-    parser.add_argument("--output-dir", default=str(REPO_ROOT / "data_splits"))
+    parser.add_argument(
+        "--output-dir", default=str(REPO_ROOT / "runs" / "reproduced_data_splits"),
+        help="Directory for generated primary split lists (default: runs/reproduced_data_splits).",
+    )
     parser.add_argument("--bank-dir", default=str(REPO_ROOT / "runs" / "native_v2"))
     parser.add_argument("--snr-min", type=float, default=0.0)
     parser.add_argument("--snr-max", type=float, default=1000.0)
